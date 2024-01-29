@@ -2,10 +2,12 @@ server:
   port: 8082
 
 spring:
+  application:
+    name: ead-course-service
   datasource:
-    url:  jdbc:postgresql://localhost:5432/ead-course
+    url:  jdbc:postgresql://localhost:5433/ead-course
     username: postgres
-    password: banco123
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -31,3 +33,12 @@ ead:
   api:
     url:
       authuser: 'http://localhost:8087'
+
+#Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
+#Antes de subir a aplicação o Service Registry precisa estar de pé
+eureka:
+  client:
+    serviceUrl:
+      defautlZone: 'http://localhost:8087/eureka'
+    instance:
+      hostname: localhost
