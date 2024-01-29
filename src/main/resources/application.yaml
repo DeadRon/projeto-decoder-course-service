@@ -32,7 +32,7 @@ logging:
 ead:
   api:
     url:
-      authuser: 'http://localhost:8087'
+      authuser: 'http://ead-authuser-service'
 
 #Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
 #Antes de subir a aplicação o Service Registry precisa estar de pé
