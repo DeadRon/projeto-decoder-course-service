@@ -36,14 +36,13 @@ logging:
 ead:
   api:
     url:
-      authuser: 'http://ead-authuser-service/ead-authuser
-      '
+      authuser: 'http://ead-authuser-service/ead-authuser'
 
 #Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
 #Antes de subir a aplicação o Service Registry precisa estar de pé
 eureka:
   client:
     serviceUrl:
-      defautlZone: 'http://localhost:8087/eureka'
+      defautlZone: 'http://localhost:8761/eureka'
     instance:
       hostname: localhost
