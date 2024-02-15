@@ -2,7 +2,6 @@ package com.ead.course.clients;
 
 import com.ead.course.dtos.CourseUserDto;
 import com.ead.course.dtos.ResponsePageDto;
-import com.ead.course.dtos.UserDto;
 import com.ead.course.services.UtilsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
