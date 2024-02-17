@@ -24,7 +24,9 @@ spring:
   output:
     ansi:
       enabled: Always
-
+  # Conecta este serviço com a instância de rabbitmq criado em https://api.cloudamqp.com/console/1059565f-9ad0-4389-ad5b-74649522039a/details
+  rabbitmq:
+    addresses: amqps://nxohpdhb:swPoiBHgBXI2kNlhOpLm5Sm7OSKraWMN@shark.rmq.cloudamqp.com/nxohpdhb
 
 logging:
   level:
@@ -37,6 +39,14 @@ ead:
   api:
     url:
       authuser: 'http://ead-authuser-service/ead-authuser'
+  ##Define o exchange para o ms course olhar
+  broker:
+    exchange:
+      userEventExchange: ead.userevent
+  ##Define o exchange para o ms course olhar
+    queue:
+      userEventQueue:
+        name: ead.userevent.ms.course
 
 #Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
 #Antes de subir a aplicação o Service Registry precisa estar de pé
