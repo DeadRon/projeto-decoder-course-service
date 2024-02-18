@@ -36,11 +36,16 @@ public class UserConsumer {
         //Identifica o tipo de ação
         switch (ActionType.valueOf(userEventDTO.getActionType())){
             //salva o usuário na base
+            //Prepara o consumar para receber atualizar dados(UPDATE) e excluir (DELETE)
             case CREATE:
+            case UPDATE:
                 userService.save(userModel);
-                log.info("[LISTENER] User Created - {}", userModel.getId());
+                log.info("[USER CONSUMER] User Created or Updated - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getId());
+                break;
+            case DELETE:
+                userService.delete(userModel.getId());
+                log.info("[USER CONSUMER] User Deleted - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getId());
                 break;
         }
     }
-
 }
