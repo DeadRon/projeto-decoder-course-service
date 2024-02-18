@@ -1,5 +1,6 @@
 package com.ead.course.dtos;
 
+import com.ead.course.enums.UserStatus;
 import com.ead.course.models.UserModel;
 import lombok.Data;
 import org.apache.catalina.User;
@@ -25,7 +26,13 @@ public class UserEventDTO {
 
     public UserModel convertToUserModel(){
         var userModel = new UserModel();
-        userModel.setId(userId);
+        userModel.setUserId(userId);
+        userModel.setEmail(email);
+        userModel.setFullName(fullName);
+        userModel.setUserStatus(userStatus);
+        userModel.setUserType(userType);
+        userModel.setCpf(cpf);
+        userModel.setImageUrl(imageUrl);
         return userModel;
     }
 
