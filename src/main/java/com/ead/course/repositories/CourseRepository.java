@@ -32,4 +32,18 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID>, JpaS
     )
     void saveCourseUser(@Param("courseId") UUID courseId, @Param("userId") UUID userId);
 
+    //deleta ou cancela a associação de um usuário em um curso
+    @Modifying
+    @Query(
+            value = "DELETE FROM tb_courses_users WHERE course_id= :courseId", nativeQuery = true
+    )
+    void deleteCourseUserByCourse(@Param("courseId") UUID courseId);
+
+    //deleta um usuário
+    @Modifying
+    @Query(
+            value = "DELETE FROM tb_courses_users WHERE user_id= :userId", nativeQuery = true
+    )
+    void deleteCourseUserByUser(@Param("userId") UUID userId);
+
 }
