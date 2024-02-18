@@ -40,11 +40,11 @@ public class UserConsumer {
             case CREATE:
             case UPDATE:
                 userService.save(userModel);
-                log.info("[USER CONSUMER] User Created or Updated - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getId());
+                log.info("[USER CONSUMER] User Created or Updated - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getUserId());
                 break;
             case DELETE:
-                userService.delete(userModel.getId());
-                log.info("[USER CONSUMER] User Deleted - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getId());
+                userService.delete(userModel.getUserId());
+                log.info("[USER CONSUMER] User Deleted - {}. Consimided from queue: 'ead.userevent.ms.course' ", userModel.getUserId());
                 break;
         }
     }
