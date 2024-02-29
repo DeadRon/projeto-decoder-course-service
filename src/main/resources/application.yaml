@@ -1,58 +1,67 @@
-server:
-  port: 8082
-  #  defini um context-path de /ead-course/. O serviço agora
-  #  espera receber requisições que tenham /ead-course/ como parte do caminho da URL.
-  servlet:
-    context-path: '/ead-course/'
+#server:
+#  port: 8082
+#  #  defini um context-path de /ead-course/. O serviço agora
+#  #  espera receber requisições que tenham /ead-course/ como parte do caminho da URL.
+#  servlet:
+#    context-path: '/ead-course/'
 
 spring:
   application:
     name: ead-course-service
-  datasource:
-    url:  jdbc:postgresql://localhost:5432/ead-course-v2
-    username: postgres
-    password: postgres
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-      jdbc:
-        lob.non-contextual-creation: true
-    properties:
-      hibernate:
-        show_sql: true
-  output:
-    ansi:
-      enabled: Always
-  # Conecta este serviço com a instância de rabbitmq criado em https://api.cloudamqp.com/console/1059565f-9ad0-4389-ad5b-74649522039a/details
-  rabbitmq:
-    addresses: amqps://nxohpdhb:swPoiBHgBXI2kNlhOpLm5Sm7OSKraWMN@shark.rmq.cloudamqp.com/nxohpdhb
+  # configurações para o config server
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      discovery:
+        serviceId: ead-config-server
 
-logging:
-  level:
-    com.ead: TRACE
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate: INFO
+#  datasource:
+#    url:  jdbc:postgresql://localhost:5432/ead-course-v2
+#    username: postgres
+#    password: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      dialect: org.hibernate.dialect.PostgreSQLDialect
+#      jdbc:
+#        lob.non-contextual-creation: true
+#    properties:
+#      hibernate:
+#        show_sql: true
+#  output:
+#    ansi:
+#      enabled: Always
+#  # Conecta este serviço com a instância de rabbitmq criado em https://api.cloudamqp.com/console/1059565f-9ad0-4389-ad5b-74649522039a/details
+#  rabbitmq:
+#    addresses: amqps://nxohpdhb:swPoiBHgBXI2kNlhOpLm5Sm7OSKraWMN@shark.rmq.cloudamqp.com/nxohpdhb
+#
+#logging:
+#  level:
+#    com.ead: TRACE
+#    root: INFO
+#    org.springframework.web: DEBUG
+#    org.hibernate: INFO
+#
+#ead:
+#  api:
+#    url:
+#      authuser: 'http://ead-authuser-service/ead-authuser'
+#  ##Define o exchange para o ms course olhar
+#  broker:
+#    exchange:
+#      userEventExchange: ead.userevent
+#  ##Define o exchange para o ms course olhar
+#    queue:
+#      userEventQueue:
+#        name: ead.userevent.ms.course
 
-ead:
-  api:
-    url:
-      authuser: 'http://ead-authuser-service/ead-authuser'
-  ##Define o exchange para o ms course olhar
-  broker:
-    exchange:
-      userEventExchange: ead.userevent
-  ##Define o exchange para o ms course olhar
-    queue:
-      userEventQueue:
-        name: ead.userevent.ms.course
 
-#Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
-#Antes de subir a aplicação o Service Registry precisa estar de pé
-eureka:
-  client:
-    serviceUrl:
-      defautlZone: 'http://localhost:8761/eureka'
-    instance:
-      hostname: localhost
+##Configurações do eureka para que este microserviço posso encontrar o Service Registry e poder se registrar
+##Antes de subir a aplicação o Service Registry precisa estar de pé
+#eureka:
+#  client:
+#    serviceUrl:
+#      defautlZone: 'http://localhost:8761/eureka'
+#    instance:
+#      hostname: localhost
