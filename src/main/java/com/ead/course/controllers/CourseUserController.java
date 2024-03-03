@@ -72,7 +72,7 @@ public class CourseUserController {
         if(userModelOptional.get().getUserStatus().equals(UserStatus.BLOCKED.toString())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: subscription already exists!");
         }
-        courseService.saveSubscriptionUserInCourse(courseModelOptional.get().getCourseId(), userModelOptional.get().getUserId());
+        courseService.saveSubscriptionUserInCourseAndSendNotification(courseModelOptional.get(), userModelOptional.get());
 
         log.info("[COURSE USER CONTROLLER] User {} subscripited in course {}.", subscriptionDto.getUserId(), courseId);
         return ResponseEntity.status(HttpStatus.CREATED).body("");
